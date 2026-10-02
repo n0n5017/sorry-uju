@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Uju</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2a0a3d 0%, #4a1c6b 40%, #6b2d8b 70%, #8b3a9e 100%);
+      font-family: 'DM Sans', sans-serif;
+      color: #f5e6ff;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Falling petals */
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, #e8b4f0 0%, #c77dff 100%);
+      border-radius: 50% 0 50% 50%;
+      opacity: 0.6;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .screen {
+      display: none;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 2.4rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: 1.7rem;
+      line-height: 1.4;
+      margin-bottom: 1.8rem;
+      color: #fff;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      color: #f0d9ff;
+    }
+
+    .soft {
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      margin-top: 2.2rem;
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .final {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-top: 1rem;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .photo-placeholder {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      margin: 0 auto 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.4);
+      overflow: hidden;
+    }
+
+    .photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Screen 0 -->
+    <div class="screen active" id="s0">
+      <div class="name">Obianuju</div>
+      <p class="soft" style="margin-top: 1.5rem;">This is for you.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 1 -->
+    <div class="screen" id="s1">
+      <h2>I said things to you<br>that I should never have said.</h2>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div class="screen" id="s2">
+      <p>I called you a whore.</p>
+      <p>I said I would never marry a whore.</p>
+      <p>I said my children should not see your nudes.</p>
+      <p>I mocked your past.</p>
+      <p>I used your body and your history as weapons when I was angry.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 3 -->
+    <div class="screen" id="s3">
+      <h2>There is no excuse for that.</h2>
+      <p class="soft">Being hurt does not give me the right to speak to you that way.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 4 -->
+    <div class="screen" id="s4">
+      <p>I was angry.</p>
+      <p>And instead of protecting what we have,</p>
+      <p>I chose to tear you down with the sharpest words I could find.</p>
+      <p style="margin-top: 1.5rem;">That is on me.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 5 -->
+    <div class="screen" id="s5">
+      <h2>You did not deserve those words.</h2>
+      <p class="soft">Not then.<br>Not ever.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 6 -->
+    <div class="screen" id="s6">
+      <p>This is the second time we have broken up.</p>
+      <p>The sixth time we almost did.</p>
+      <p style="margin-top: 1.4rem;">I do not want to keep doing this to you.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 7 -->
+    <div class="screen" id="s7">
+      <h2>I am sorry, Uju.</h2>
+      <p class="soft">Really sorry.</p>
+      <button class="btn" onclick="next()">Continue</button>
+    </div>
+
+    <!-- Screen 8 -->
+    <div class="screen" id="s8">
+      <p>If we are going to try again,</p>
+      <p>I need to stop speaking to you like that.</p>
+      <p class="final" style="margin-top: 2.2rem;">I want peace with you.</p>
+      <p class="soft" style="margin-top: 2.5rem; font-size: 0.9rem;">— Nonso</p>
+    </div>
+  </div>
+
+  <script>
+    let current = 0;
+    const total = 9;
+
+    function next() {
+      document.getElementById('s' + current).classList.remove('active');
+      current++;
+      if (current < total) {
+        document.getElementById('s' + current).classList.add('active');
+      }
+    }
+
+    // Create falling petals
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (Math.random() * 4 + 5) + 's';
+      petal.style.animationDelay = Math.random() * 2 + 's';
+      petal.style.width = (Math.random() * 8 + 8) + 'px';
+      petal.style.height = petal.style.width;
+      document.body.appendChild(petal);
+
+      setTimeout(() => {
+        petal.remove();
+      }, 9000);
+    }
+
+    setInterval(createPetal, 600);
+  </script>
+</body>
+</html>
